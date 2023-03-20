@@ -5,9 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Student Dashbaord</title>
+    <title>Kapella Bootstrap Admin Dashboard Template</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <!-- base:css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="dashboard/dashboard/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="dashboard/dashboard/vendors/base/vendor.bundle.base.css">
     <!-- endinject -->
@@ -17,171 +18,262 @@
     <link rel="stylesheet" href="dashboard/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="dashboard/dashboard/images/favicon.png" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>  
+
+<style>
+  /* Extra */
+ body {
+	 background: #ccc;
+	 color: #272727;
+	 font-size: 14px;
+	 margin: 0;
+}
+ .logo {
+	 max-width: 200px;
+}
+ .navbar {
+	 align-items: center;
+	 background: #fff;
+	 box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+	 display: flex;
+	 flex-direction: row;
+	 font-family: sans-serif;
+	 padding: 10px 50px;
+}
+ .push-left {
+	 margin-left: auto;
+}
+/* Menu */
+ .hamburger {
+	 background: transparent;
+	 border: none;
+	 cursor: pointer;
+	 display: none;
+	 outline: none;
+	 height: 30px;
+	 position: relative;
+	 width: 30px;
+	 z-index: 1000;
+}
+ @media screen and (max-width: 768px) {
+	 .hamburger {
+		 display: inline-block;
+	}
+}
+ .hamburger-line {
+	 background: #272727;
+	 height: 3px;
+	 position: absolute;
+	 left: 0;
+	 transition: all 0.2s ease-out;
+	 width: 100%;
+}
+ .hamburger:hover .hamburger-line {
+	 background: #777;
+}
+ .hamburger-line-top {
+	 top: 3px;
+}
+ .menu-active .hamburger-line-top {
+	 top: 50%;
+	 transform: rotate(45deg) translatey(-50%);
+}
+ .hamburger-line-middle {
+	 top: 50%;
+	 transform: translatey(-50%);
+}
+ .menu-active .hamburger-line-middle {
+	 left: 50%;
+	 opacity: 0;
+	 width: 0;
+}
+ .hamburger-line-bottom {
+	 bottom: 3px;
+}
+ .menu-active .hamburger-line-bottom {
+	 bottom: 50%;
+	 transform: rotate(-45deg) translatey(50%);
+}
+ .nav-menu {
+	 display: flex;
+	 list-style: none;
+	 margin: 0;
+	 padding: 0;
+	 transition: all 0.25s ease-in;
+}
+ @media screen and (max-width: 768px) {
+	 .nav-menu {
+		 background: #fff;
+		 flex-direction: column;
+		 justify-content: center;
+		 opacity: 0;
+		 position: absolute;
+		 top: 0;
+		 right: 0;
+		 bottom: 0;
+		 left: 0;
+		 transform: translatey(-100%);
+		 text-align: center;
+	}
+	 .menu-active .nav-menu {
+		 transform: translatey(0%);
+		 opacity: 1;
+	}
+}
+ .nav-menu .menu-item a {
+	 color: #444;
+	 display: block;
+	 line-height: 30px;
+	 margin: 0px 10px;
+	 text-decoration: none;
+	 text-transform: uppercase;
+}
+ .nav-menu .menu-item a:hover {
+	 color: #777;
+	 text-decoration: underline;
+}
+ @media screen and (max-width: 768px) {
+	 .nav-menu .menu-item a {
+		 font-size: 20px;
+		 margin: 8px;
+	}
+}
+ .sub-nav {
+	 border: 1px solid #ccc;
+	 display: none;
+	 position: absolute;
+	 background-color: #fff;
+	 padding: 5px 5px;
+	 list-style: none;
+	 width: 230px;
+}
+ @media screen and (max-width: 768px) {
+	 .sub-nav {
+		 position: relative;
+		 width: 100%;
+		 display: none;
+		 background-color: rgba(0, 0, 0, 0.20);
+		 box-sizing: border-box;
+	}
+}
+ .nav__link:hover + .sub-nav {
+	 display: block;
+}
+ .sub-nav:hover {
+	 display: block;
+}
+ span
+ {
+  color:black;
+ }
+
+
+     .dropbtn {
+        background-color: #0407aa;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+      
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        display: block;
+      }
+      
+      
+      .dropdown:hover .dropdown-content {display: block;}
+
+</style>
+
   </head>
   <body>
-    <br>
-    <div class="horizontal-menu">
-      <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-        <div class="container-fluid p-0">
-          <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between p-0">
-            <ul class="navbar-nav navbar-nav-left">
-              <li class="nav-item ms-0 me-5 d-lg-flex d-none">
-                <a href="#" class="nav-link horizontal-nav-left-menu"><i class="mdi mdi-format-list-bulleted"></i></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                  <i class="mdi mdi-bell mx-0"></i>
-                  <!-- <span class="count bg-success">2</span> -->
+  
+  <nav class="navbar d-flex justify-content-center">
+  <div class="logo"><img src="dashboard/images/LOGO.png" style="width:300px; height:100px;" alt="LOGO"></div>
+  <div class="push-left">
+    <button id="menu-toggler" data-class="menu-active" class="hamburger">
+      <span class="hamburger-line hamburger-line-top"></span>
+      <span class="hamburger-line hamburger-line-middle"></span>
+      <span class="hamburger-line hamburger-line-bottom"></span>
+    </button>
+    
+    <!--  Menu compatible with wp_nav_menu  -->
+    <ul id="primary-menu" class="menu nav-menu d-flex justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="mdi mdi-file-document-box menu-icon"></i>
+          <span class="menu-title">Profile </span>
+        </a>
+      </li>       
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="mdi mdi-file-document-box menu-icon"></i>
+                  <span class="menu-title">Register Compalins</span>
                 </a>
-                <a class="navbar-brand brand-logo" href="/student_dashboard"><img src="dashboard/images/LOGO 2.png"style="width:400px; height:150px;" alt="logo"/></a>
-            
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
-                  <i class="mdi mdi-email mx-0"></i>
-                  <!-- <span class="count bg-primary">4</span> -->
+              </li>      <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="mdi mdi-file-document-box menu-icon"></i>
+                  <span class="menu-title">lab_systems</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-             
-               
-                </div>
+              </li>     <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="mdi mdi-file-document-box menu-icon"></i>
+                  <span class="menu-title">Exam </span>
+                </a>
               </li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link count-indicator "><i class="mdi mdi-message-reply-text"></i></a>
+
+      </li>
+      <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="mdi mdi-file-document-box menu-icon"></i>
+                  <span class="menu-title">Attendance </span>
+                </a>
               </li>
-			  <li class="nav-item nav-search d-none d-lg-block ms-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="search">
-                        <i class="mdi mdi-magnify"></i>
-                      </span>
-                    </div>
-                    <!-- <input type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search"> -->
-                </div>
-              </li>	
-            </ul>
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="mdi mdi-file-document-box menu-icon"></i>
+                  <span class="menu-title">Seminar</span>
+                </a>
+              </li> 
+              
+              
+              <span>
+          
+              <div class="dropdown">
+        <button class="dropbtn">          <a style="color:black;" class="nav-link dropdown-toggle" href="/student_login" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{session('sessionusername')}}</a>
+</button>
+        <div class="dropdown-content">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="dashboard/images/LOGO 2.png" alt="logo"/></a>
             </div>
 
             <ul class="navbar-nav navbar-nav-right">
+            <li><a href="#">  <form method="POST" action="{{URL :: to('logout')}}" class="">
+          @csrf</a>
+      
+    </form>
+    </li>
           
-
-                <li class="nav-item nav-profile dropdown">
-                    <span class="nav-profile-name">
-          <form method="POST" action="{{URL :: to('logout')}}" class="">
-					@csrf
-				  <span class="online-status"></span>
-          <a style="color:black;" class="nav-link dropdown-toggle" href="/student_login" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{session('sessionusername')}}</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                  <button type="SUBMIT" class="">
-                  {{ __('Log Out') }}
-                     </button>
-
-                    </div>				  
-   
-
-					
-</form></span>
              
             </ul>
-
-              <span class="mdi mdi-menu"></span>
-            </button>
-          </div>
         </div>
-      </nav>
-      <nav class="bottom-navbar">
-        <div class="container">
-            <ul class="nav page-navigation">
-              <li class="nav-item">
-                <a class="nav-link" href="/student_dashboard">
-                  <i class="mdi mdi-file-document-box menu-icon"></i>
-                  <span class="menu-title">Dashboard</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                  <a href="/register_complains" class="nav-link">
-                    <i class="mdi mdi-cube-outline menu-icon"></i>
-                    <span class="menu-title">Register Complains</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <!-- <li class="nav-item">
-                  <a href="/lab_systems" class="nav-link">
-                    <i class="mdi mdi-chart-areaspline menu-icon"></i>
-                    <span class="menu-title">lab_systems</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li> -->
-              <li class="nav-item">
-                  <a href="/examfetch" class="nav-link">
-                    <i class="mdi mdi-finance menu-icon"></i>
-                    <span class="menu-title">Exam</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="/attendances" class="nav-link">
-                    <i class="mdi mdi-grid menu-icon"></i>
-                    <span class="menu-title">Attendance</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="/announcement" class="nav-link">
-                    <i class="mdi mdi-emoticon menu-icon"></i>
-                    <span class="menu-title">Announcement</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-              </li>
-			
-              <!-- <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="mdi mdi-codepen menu-icon"></i>
-                    <span class="menu-title">Sample Pages</span>
-                    <i class="menu-arrow"></i>
-                  </a>
-                  <div class="submenu">
-                      <ul class="submenu-item">
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/login.html">Login</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login 2</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/register.html">Register</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/register-2.html">Register 2</a></li>
-                          <li class="nav-item"><a class="nav-link" href="pages/samples/lock-screen.html">Lockscreen</a></li>
-                      </ul>
-                  </div>
-              </li> -->
-              <li class="nav-item">
-                  <a href="/feedback_form" class="nav-link">
-                    <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                    <span class="menu-title">Feedback</span></a>
-              </li>
-
-			  <!-- <li class="nav-item">
-                  <a href="/feedback_form" class="nav-link">
-				 
-										<button type="button" class="btn btn-outline-inverse-info btn-icon-text">
-											Feedback
-											<i class="mdi mdi-message-outline btn-icon-append"></i>                          
-										</button>
-								
-                  </a>
-              </li> -->
-            </ul>
-        </div>
-      </nav>
-    </div>
-    <!-- partial -->
+      </div>
+</nav>
 
 
     @yield('content')
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <footer class="footer">
           <div class="footer-wrap">
@@ -219,5 +311,26 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/simple-ajax-uploader/2.6.7/SimpleAjaxUploader.min.js" integrity="sha512-sF1OQUX4620btxfaKLxsFeu/euV3FcPyH+uST3mdEjc8vW8R4z1xNiZhcG7wcZQbFkgFhiiBoAyYNMCL3jufPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- End custom dashboard/js for this page-->
+
+    <script>
+      $(document).ready(function() {
+  // Toggle menu on click
+  $("#menu-toggler").click(function() {
+    toggleBodyClass("menu-active");
+  });
+
+  function toggleBodyClass(className) {
+    document.body.classList.toggle(className);
+  }
+
+ });
+
+
+ $('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});
+    </script>
   </body>
-</html>
+</html> 

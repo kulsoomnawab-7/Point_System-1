@@ -250,16 +250,16 @@ class studentcontroller extends Controller
                 $software = software_complain::all();
                 $Network = network_issue::all();
 
-                // if(isset($login['0']->id))
-                // {
-                    // $data=usermodels::where('id',$login['0']->id)->first();
-                    // session()->put('user',$data);
-                    // session(["sessionid"=>$us->std_id]);
-                    // session(["sessionusername"=>$us->name]);
-                    // session(["user"=>$data->std_id]);
-                    // echo session('user');
+                if(isset($login['0']->id))
+                {
+                    $data=usermodels::where('id',$login['0']->id)->first();
+                    session()->put('user',$data);
+                    session(["sessionid"=>$us->std_id]);
+                    session(["sessionusername"=>$us->name]);
+                    session(["user"=>$data->std_id]);
+                    echo session('user');
 
-                    // $user = usermodels::where("email", $email)->first();  
+                    $user = usermodels::where("email", $email)->first();  
                     $email = $req->emailinput;
                     $user =DB::table("usermodels")->where(["email"=>$email])->first();
 
@@ -273,12 +273,12 @@ class studentcontroller extends Controller
               
                     $announcement = DB::table('announcements')->orderBy('id','desc')->limit(1)->get();
                     $attendances = DB::table('attendances')->where('Std_ID',session("std_id"))->orderBy('id','desc')->limit(1)->get();
-                    // $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.Std_ID','examsubjectmasters.std_id')
-                    // ->orderBy('examsubjectmasters.id','desc')->limit(1)
-                    // ->get();    
-                    return view('student_dashboard',compact('announcement','attendances'));
-                // }
-                // return view("/student_dashboard" ,compact( 'fetch','lab','hardware','software','Network'));
+                    $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.Std_ID','examsubjectmasters.std_id')
+                    ->orderBy('examsubjectmasters.id','desc')->limit(1)
+                    ->get();    
+                    return view('student_dashboard',compact('announcement','attendances','student_data'));
+                }
+                return view("/student_dashboard" ,compact( 'fetch','lab','hardware','software','Network'));
 
             }
             else
@@ -507,12 +507,12 @@ class studentcontroller extends Controller
                 $announcement = DB::table('announcements')->orderBy('id','desc')->limit(1)->get();
                 $attendances = DB::table('attendances')->where('Std_ID',session("std_id"))->orderBy('id','desc')->limit(1)->get();
 
-                // $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.Std_ID','examsubjectmasters.std_id')
-                // ->orderBy('examsubjectmasters.id','desc')->limit(1)
-                // ->get();
+                $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.Std_ID','examsubjectmasters.std_id')
+                ->orderBy('examsubjectmasters.id','desc')->limit(1)
+                ->get();
 
-                // $student_data = DB::table('examsubjectmasters')->where('Std_ID' ,session("std_id"))->orderBy('id','desc')->limit(1)->get();
-                return view('student_dashboard',compact('announcement','attendances'));
+                $student_data = DB::table('examsubjectmasters')->where('Std_ID' ,session("std_id"))->orderBy('id','desc')->limit(1)->get();
+                return view('student_dashboard',compact('announcement','attendances','student_data'));
             }
             else if($login->role=="0")
             {   
@@ -1795,12 +1795,12 @@ class studentcontroller extends Controller
             $announcement = DB::table('announcements')->orderBy('id','desc')->limit(1)->get();
             $attendances = DB::table('attendances')->where('Std_ID',session("std_id"))->orderBy('id','desc')->limit(1)->get();
 
-            // $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.id','examsubjectmasters.std_id')
-            // ->orderBy('examsubjectmasters.id','desc')->limit(1)
-            // ->get();
+            $student_data = DB::table('examsubjectmasters')->join('usermodels','usermodels.id','examsubjectmasters.std_id')
+            ->orderBy('examsubjectmasters.id','desc')->limit(1)
+            ->get();
 
-            // $student_data = DB::table('examsubjectmasters')->where('Std_ID' ,session("std_id"))->orderBy('id','desc')->limit(1)->get();
-            return view('student_dashboard',compact('announcement','attendances'));
+            $student_data = DB::table('examsubjectmasters')->where('Std_ID' ,session("std_id"))->orderBy('id','desc')->limit(1)->get();
+            return view('student_dashboard',compact('announcement','attendances','student_data'));
        }
        else
        {
@@ -1817,23 +1817,23 @@ class studentcontroller extends Controller
     {
         $string = feedback_form::all();
         return view("/form_fetch" ,compact('string'));
+
+
+      
     }
 
     public function filter_(Request $res)
     {
-        $from = $res->from;
-        $to = $res->to;
-        // echo $from;
-        // echo 'yt',$to;
-        
+   
+$from = $res->from;
+$to = $res->to;
 
-        $string = feedback_form::where('month' , 'LIKE' ,$from)
-        ->where('year' , 'LIKE' ,$to)->get();
-        if(isset($string))
-        {
-        return view("/form_fetch" ,compact('string'));
-        }
-
+$string = feedback_form::where('date' , 'LIKE' ,'%'.$from.'%')
+->where('Batch' , 'LIKE' , '%'.$to.'%')->get();
+if(isset($string))
+{
+return view("/form_fetch" ,compact('string'));
+}
     }
 
         // exam fetch
@@ -1887,4 +1887,9 @@ class studentcontroller extends Controller
            return view('attendances',compact('attendances'));
         }
 
-}
+
+
+        
+        // data table
+
+    }

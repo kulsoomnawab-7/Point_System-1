@@ -188,3 +188,4 @@ Route::post("/filter_", [studentcontroller::class,'filter_']);
 // Route::get("/attendances", [studentcontroller::class,'attendances']);
 
 Route::get("/student_dashboard", [studentcontroller::class,'student_dashboard']);
+//

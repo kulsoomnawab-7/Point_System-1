@@ -1,18 +1,104 @@
 @extends("dashboardhead_foot")
 @section('content')
-		<div class="container-fluid page-body-wrapper">
+<?php
+$student_da = DB::table('currskills')
+->join('batches','batches.id','currskills.Batch_ID')
+->join('skills','skills.id','currskills.Curr_Skill')
+->join('students','students.Batch_ID','batches.id')
+->where('students.Std_id',session("std_id"))
+->first(); 
+?>
+
+<style>
+
+	.description
+	{
+		background-color: white;
+		width: 430px;
+		height: 350px;
+		border-radius: 10PX;
+		box-shadow: 10px 10px 20px 10px rgb(226, 222, 222);
+		text-align: center;
+	}
+</style>
+		<div class="container-fluid page-body-wrapper ">
 			<div class="main-panel">
 				<div class="content-wrapper">
 					
 					<div class="row mt-4">
-								
-						<div class="col-lg-4 mb-3 mb-lg-0">
+						<div class="col-lg-4 mb-3 mr-3 mb-lg-0  col-md-6 col-sm-12">
+							@foreach ($student_data as $e)
 							
+							<a href="/examfetch" class="author" style="text-decoration:none; color:inherit; ">								<div class="blog-card">
+								
+								<div class="description" style="display:flex-inline;">
+									<img src="dashboard/images/exam.png" style="width:100px; height: 100px; " class="mt-3" alt="">
+									<br><br>
+      <h1>Exams Schedule</h1>
+      <p ><b> Student Id : </b><span >{{$student_da->Std_id}}</span></p>
+	 
+	
+      <p> <b> Subject : </b><span>{{$e->Subject}}</span></p>
+      <p> <b> Semester : </b><span>{{$e->Sem_ID}}</span></p>
+      <p> <b> Exam Type : </b><span>{{$e->ExamType}}</span></p>
+      
+    </div>
+  </div>
+ 
+					
+						</a>
+						@endforeach
+					</div>
+						<div class="col-lg-4 mb-3 mb-lg-0 col-md-6 col-sm-12">
 							<a href="/announcement" style="text-decoration:none;">
+						
+											@foreach($announcement as $annu)
+
+											<a href="/announcement" class="author" style="text-decoration:none; color:inherit; ">								<div class="blog-card">
+								
+												<div class="description" style="display:flex-inline;">
+													<img src="dashboard/images/seminar.jpg" style="width:100px; height: 100px; " class="mt-3" alt="">
+													<br><br>
+					  <h1>Seminar Schedule</h1>
+					  <div class="div1">
+					  <p> <b> Seminar Image  </b><span> <img src="dashboard/images/{{$annu->Sem_img}}"  alt="" ></span></h3>
+					 
+					
+					  <p> <b> Subject : </b><span>{{$annu->Text}}</span></p>
+					  <p> <b> Semester : </b><span>{{$annu->Title}}</span></p>
+					</div>
+					</div>
+				  </div>				
+				</a>
+	@endforeach
+
+					</a>	
+					</div>
+							<div class="col-lg-4 mb-3 mr-3 mb-lg-0 col-md-6 col-sm-12">
+							<a href="/attendances" style="text-decoration:none;">
+                        	@foreach($attendances as $atts)
+									<a href="/attendances" class="author" style="text-decoration:none; color:inherit; ">								<div class="blog-card">
+								
+										<div class="description" style="display:flex-inline;">
+											<img src="dashboard/images/attendance.jpg" style="width:100px; height: 100px; " class="mt-3" alt="">
+											<br><br>
+			  <h1>Attendance Schedule</h1>
+			  <p ><b> Student Id : </b><span >{{$atts->Std_ID}}</span></p>
+	 
+	
+			  <p> <b> Classes Held : </b><span>{{$atts->Classes_Held}}</span></p>
+			  <p> <b> Classes Attended : </b><span>{{$atts->Classes_Attended }}</span></p>
+			  <p> <b> Month : </b><span>{{$atts->Month}}</span></p>
+			  
+			  
+		
+   </a>
+								@endforeach
+									
+							</div>
+						</a>
 							
 						</div>
-					
-						
 
 						
 
